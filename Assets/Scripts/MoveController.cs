@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class MoveController : MonoBehaviour
+public class MoveController : Shooter
 {
 
     /// <summary>
