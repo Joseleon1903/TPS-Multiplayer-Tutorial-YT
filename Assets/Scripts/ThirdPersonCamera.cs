@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
@@ -13,11 +11,19 @@ public class ThirdPersonCamera : MonoBehaviour
 
     void Awake() {
         // listening the gameManager event OnLocalPlayerJoined for execute HandlerOnLocalPlayerJoined
-        GameManager.Instance.OnLocalPlayerJoined += HandlerOnLocalPlayerJoined;
+        //GameManager.Instance.OnLocalPlayerJoined += HandlerOnLocalPlayerJoined;
+
+        print("Join a player");
+        localPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        cameraLookTarget = localPlayer.transform.Find("CameraLookTarget");
+
+        if (cameraLookTarget == null)
+            cameraLookTarget = localPlayer.transform;
     }
 
-    void HandlerOnLocalPlayerJoined(Player player)
+    private void HandlerOnLocalPlayerJoined(Player player)
     {
+        print("Join a player");
         localPlayer = player;
         cameraLookTarget = localPlayer.transform.Find("CameraLookTarget");
 
@@ -27,7 +33,9 @@ public class ThirdPersonCamera : MonoBehaviour
     }
 
     void Update() {
-        Vector3 targetPosition = cameraLookTarget.position + localPlayer.transform.forward * cameraOffset.z +
+
+        Vector3 targetPosition = cameraLookTarget.position +
+            localPlayer.transform.forward * cameraOffset.z +
             localPlayer.transform.up * cameraOffset.y +
             localPlayer.transform.right * cameraOffset.x;
 
@@ -35,6 +43,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
         transform.position = Vector3.Lerp(transform.position, targetPosition, damping * Time.deltaTime);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, damping * Time.deltaTime);
+        
     } 
     
 

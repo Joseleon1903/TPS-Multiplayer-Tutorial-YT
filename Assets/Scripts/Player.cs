@@ -32,6 +32,20 @@ public class Player : MonoBehaviour
 
     Vector2 mouseInput;
 
+    private CrossHair m_crossHair;
+
+    private CrossHair CrossHair
+    {
+        get 
+        {
+            if (m_crossHair == null) { 
+               m_crossHair = GetComponentInChildren<CrossHair>();
+            }
+
+            return m_crossHair;
+        }
+    }
+
     void Awake() {
         playeInput = GameManager.Instance.InputController;
         GameManager.Instance.LocalPlayer = this;
@@ -50,7 +64,10 @@ public class Player : MonoBehaviour
         MoveController.move(direction);
 
         mouseInput.x = Mathf.Lerp(mouseInput.x, playeInput.MouseInput.x, 1f / MouseControl.Damping.x);
+        mouseInput.y = Mathf.Lerp(mouseInput.y, playeInput.MouseInput.y, 1f / MouseControl.Damping.y);
 
         transform.Rotate(Vector3.up * mouseInput.x * MouseControl.Sensitivity.x);
+
+        CrossHair.LookHeight(mouseInput.y * MouseControl.Sensitivity.y);
     }
 }
