@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
     void OnTriggerEnter(Collider other) {
 
         print("hit : " + other.name);
-
+    
         var destructable = other.transform.GetComponent<Destructable>();
 
         if (destructable == null)
