@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
 
-public class Notifier : MonoBehaviour
+namespace PatterntNG.Observer
 {
-    void OnEnable()
+    public class Notifier : MonoBehaviour
     {
-        Timer.OnTimerEnded += ShowGameOverPopUp;
-    }
+        void OnEnable()
+        {
+            Timer.OnTimerEnded += ShowGameOverPopUp;
+        }
 
-    void OnDisable()
-    {
-        Timer.OnTimerEnded -= ShowGameOverPopUp;
-    }
+        void OnDisable()
+        {
+            Timer.OnTimerEnded -= ShowGameOverPopUp;
+        }
 
-    void ShowGameOverPopUp()
-    {
-        Debug.Log("[NOTIFIER] : Show game over pop up!");
+        void ShowGameOverPopUp()
+        {
+            Debug.Log("[NOTIFIER] : Show game over pop up!");
+        }
     }
 }

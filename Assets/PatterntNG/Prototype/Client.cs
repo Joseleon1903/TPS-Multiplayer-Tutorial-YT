@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Pattern.Prototype
+namespace PatterntNG.Prototype
 {
     public class Client : MonoBehaviour
     {

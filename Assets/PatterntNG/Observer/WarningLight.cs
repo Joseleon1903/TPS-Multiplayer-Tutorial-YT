@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
 
-public class WarningLight : MonoBehaviour
+namespace PatterntNG.Observer
 {
-    void OnEnable()
+    public class WarningLight : MonoBehaviour
     {
-        Timer.OnHalfTime += BlinkLight;
-    }
+        void OnEnable()
+        {
+            Timer.OnHalfTime += BlinkLight;
+        }
 
-    void OnDisable()
-    {
-        Timer.OnHalfTime -= BlinkLight;
-    }
+        void OnDisable()
+        {
+            Timer.OnHalfTime -= BlinkLight;
+        }
 
-    void BlinkLight()
-    {
-        Debug.Log("[WARNING LIGHT] : It's half-time, blinking the warning light!");
+        void BlinkLight()
+        {
+            Debug.Log("[WARNING LIGHT] : It's half-time, blinking the warning light!");
+        }
     }
 }

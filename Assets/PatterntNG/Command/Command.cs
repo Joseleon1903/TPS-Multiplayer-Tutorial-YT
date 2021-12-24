@@ -1,11 +1,15 @@
-﻿abstract class Command
+﻿
+namespace PatterntNG.Commands
 {
-    protected RemoteControlDevice m_Receiver;
-
-    public Command(RemoteControlDevice receiver)
+    abstract class Command
     {
-        m_Receiver = receiver;
-    }
+        protected RemoteControlDevice m_Receiver;
 
-    public abstract void Execute();
+        public Command(RemoteControlDevice receiver)
+        {
+            m_Receiver = receiver;
+        }
+
+        public abstract void Execute();
+    }
 }

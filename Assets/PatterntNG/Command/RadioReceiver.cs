@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
-
-class RadioReceiver : RemoteControlDevice
+namespace PatterntNG.Commands
 {
-    public override void TurnOn()
+    class RadioReceiver : RemoteControlDevice
     {
-        Debug.Log("Radio is turned on.");
-    }
+        public override void TurnOn()
+        {
+            Debug.Log("Radio is turned on.");
+        }
 
-    public override void TurnOff()
-    {
-        Debug.Log("Radio is turned off.");
+        public override void TurnOff()
+        {
+            Debug.Log("Radio is turned off.");
+        }
     }
 }

@@ -1,5 +1,8 @@
-﻿abstract class RemoteControlDevice
+﻿namespace PatterntNG.Commands
 {
-    public abstract void TurnOn();
-    public abstract void TurnOff();
+    abstract class RemoteControlDevice
+    {
+        public abstract void TurnOn();
+        public abstract void TurnOff();
+    }
 }

@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
-
-public class UIManager
+namespace Pattern.Facade
 {
-    public void DisplaySaveIcon()
+    public class UIManager
     {
-        Debug.Log("Displaying the save icon.");
+        public void DisplaySaveIcon()
+        {
+            Debug.Log("Displaying the save icon.");
+        }
     }
 }

@@ -1,12 +1,11 @@
 ﻿using TPS.Script.Controllers;
-using TPS.Script.Players;
 using UnityEngine;
 
 namespace TPS.Share
 {
     public class GameManager
     {
-        public event System.Action<Player> OnLocalPlayerJoined;
+        public event System.Action<Script.Players.Player> OnLocalPlayerJoined;
 
         private GameObject gameobject;
 
@@ -43,9 +42,9 @@ namespace TPS.Share
             }
         }
 
-        private Player m_LocalPlayer;
+        private Script.Players.Player m_LocalPlayer;
 
-        public Player LocalPlayer
+        public Script.Players.Player LocalPlayer
         {
 
             get

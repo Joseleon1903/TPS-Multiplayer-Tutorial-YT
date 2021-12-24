@@ -1,12 +1,15 @@
-﻿public class Drone: Enemy
+﻿namespace PatterntNG.Prototype
 {
-    public void Fly()
+    public class Drone : Enemy
     {
-        // Implement flying functionality.
-    }
+        public void Fly()
+        {
+            // Implement flying functionality.
+        }
 
-    public void Fire()
-    {
-        // Implement laser fire functionality.
+        public void Fire()
+        {
+            // Implement laser fire functionality.
+        }
     }
 }

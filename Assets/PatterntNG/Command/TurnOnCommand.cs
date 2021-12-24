@@ -1,11 +1,14 @@
-﻿class TurnOnCommand : Command
+﻿namespace PatterntNG.Commands
 {
-    public TurnOnCommand(RemoteControlDevice receiver) : base(receiver)
+    class TurnOnCommand : Command
     {
-    }
+        public TurnOnCommand(RemoteControlDevice receiver) : base(receiver)
+        {
+        }
 
-    public override void Execute()
-    {
-        m_Receiver.TurnOn();
+        public override void Execute()
+        {
+            m_Receiver.TurnOn();
+        }
     }
 }

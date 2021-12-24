@@ -1,7 +1,10 @@
-﻿public class Sniper : Enemy
+﻿namespace PatterntNG.Prototype
 {
-    public void Shoot()
+    public class Sniper : Enemy
     {
-        // Implement shooting functionality.
+        public void Shoot()
+        {
+            // Implement shooting functionality.
+        }
     }
 }

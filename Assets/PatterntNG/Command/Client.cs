@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using PatterntNG.Commands;
+using UnityEngine;
 
-namespace Pattern.Command_
+namespace PatterntNG.Commands
 {
     public class Client : MonoBehaviour
     {

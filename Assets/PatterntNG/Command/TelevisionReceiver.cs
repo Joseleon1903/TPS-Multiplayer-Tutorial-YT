@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
-
-class TelevisionReceiver : RemoteControlDevice
+namespace PatterntNG.Commands
 {
-    public override void TurnOn()
+    class TelevisionReceiver : RemoteControlDevice
     {
-        Debug.Log("TV turned on.");
-    }
+        public override void TurnOn()
+        {
+            Debug.Log("TV turned on.");
+        }
 
-    public override void TurnOff()
-    {
-        Debug.Log("TV turned off.");
+        public override void TurnOff()
+        {
+            Debug.Log("TV turned off.");
+        }
     }
 }

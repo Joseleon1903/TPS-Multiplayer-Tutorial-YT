@@ -1,52 +1,55 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Timer : MonoBehaviour
+namespace PatterntNG.Observer
 {
-    private float m_Duration = 10.0f;
-    private float m_HalfTime;
-
-    public delegate void TimerStarted();
-    public static event TimerStarted OnTimerStarted;
-
-    public delegate void HalfTime();
-    public static event HalfTime OnHalfTime;
-
-    public delegate void TimerEnded();
-    public static event TimerEnded OnTimerEnded;
-
-    private IEnumerator m_Coroutine;
-
-    IEnumerator Start()
+    public class Timer : MonoBehaviour
     {
-        m_HalfTime = m_Duration / 2;
+        private float m_Duration = 10.0f;
+        private float m_HalfTime;
 
-        if (OnTimerStarted != null)
+        public delegate void TimerStarted();
+        public static event TimerStarted OnTimerStarted;
+
+        public delegate void HalfTime();
+        public static event HalfTime OnHalfTime;
+
+        public delegate void TimerEnded();
+        public static event TimerEnded OnTimerEnded;
+
+        private IEnumerator m_Coroutine;
+
+        IEnumerator Start()
         {
-            OnTimerStarted();
-        }
+            m_HalfTime = m_Duration / 2;
 
-        yield return StartCoroutine(WaitAndPrint(1.0F));
-
-        if (OnTimerEnded != null)
-        {
-            OnTimerEnded();
-        }
-    }
-
-    private IEnumerator WaitAndPrint(float waitTime)
-    {
-        while (Time.time < m_Duration)
-        {
-            yield return new WaitForSeconds(waitTime);
-
-            Debug.Log("Seconds: " + Mathf.Round(Time.time));
-
-            if (Mathf.Round(Time.time) == Mathf.Round(m_HalfTime))
+            if (OnTimerStarted != null)
             {
-                if (OnHalfTime != null)
+                OnTimerStarted();
+            }
+
+            yield return StartCoroutine(WaitAndPrint(1.0F));
+
+            if (OnTimerEnded != null)
+            {
+                OnTimerEnded();
+            }
+        }
+
+        private IEnumerator WaitAndPrint(float waitTime)
+        {
+            while (Time.time < m_Duration)
+            {
+                yield return new WaitForSeconds(waitTime);
+
+                Debug.Log("Seconds: " + Mathf.Round(Time.time));
+
+                if (Mathf.Round(Time.time) == Mathf.Round(m_HalfTime))
                 {
-                    OnHalfTime();
+                    if (OnHalfTime != null)
+                    {
+                        OnHalfTime();
+                    }
                 }
             }
         }

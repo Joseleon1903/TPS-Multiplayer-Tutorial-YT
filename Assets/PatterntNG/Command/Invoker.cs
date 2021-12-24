@@ -1,14 +1,18 @@
-﻿class Invoker
+﻿namespace PatterntNG.Commands
 {
-    private Command m_Command;
-
-    public void SetCommand(Command command)
+    class Invoker
     {
-        m_Command = command;
-    }
+        private Command m_Command;
 
-    public void ExecuteCommand()
-    {
-        m_Command.Execute();
+        public void SetCommand(Command command)
+        {
+            m_Command = command;
+        }
+
+        public void ExecuteCommand()
+        {
+            m_Command.Execute();
+        }
+
     }
 }

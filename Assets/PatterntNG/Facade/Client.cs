@@ -1,15 +1,14 @@
-﻿using PatterntNG.Facade;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Pattern.Facade
 {
     public class Client : MonoBehaviour
     {
-        private Player m_Player;
+        private PatterntNG.Facade.Player m_Player;
 
         void Start()
         {
-            m_Player = new Player();
+            m_Player = new PatterntNG.Facade.Player();
         }
 
         void Update()

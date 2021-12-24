@@ -10,7 +10,7 @@ namespace TPS.Script.GameCamera
 
         Transform cameraLookTarget;
 
-        Player localPlayer;
+        Players.Player localPlayer;
 
         void Awake()
         {
@@ -18,14 +18,14 @@ namespace TPS.Script.GameCamera
             //GameManager.Instance.OnLocalPlayerJoined += HandlerOnLocalPlayerJoined;
 
             print("Join a player");
-            localPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            localPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Players.Player>();
             cameraLookTarget = localPlayer.transform.Find("CameraLookTarget");
 
             if (cameraLookTarget == null)
                 cameraLookTarget = localPlayer.transform;
         }
 
-        private void HandlerOnLocalPlayerJoined(Player player)
+        private void HandlerOnLocalPlayerJoined(Players.Player player)
         {
             print("Join a player");
             localPlayer = player;

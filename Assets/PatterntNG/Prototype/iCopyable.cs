@@ -1,4 +1,7 @@
-﻿public interface iCopyable
+﻿namespace PatterntNG.Prototype
 {
-    iCopyable Copy();
+    public interface iCopyable
+    {
+        iCopyable Copy();
+    }
 }

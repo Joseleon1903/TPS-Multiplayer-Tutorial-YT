@@ -1,18 +1,21 @@
-﻿class KillSwitchCommand : Command
+﻿namespace PatterntNG.Commands
 {
-    private RemoteControlDevice[] m_Devices;
-    private static RemoteControlDevice receiver;
-
-    public KillSwitchCommand(RemoteControlDevice[] devices) : base(receiver)
+    class KillSwitchCommand : Command
     {
-        m_Devices = devices;
-    }
+        private RemoteControlDevice[] m_Devices;
+        private static RemoteControlDevice receiver;
 
-    public override void Execute()
-    {
-        foreach (RemoteControlDevice device in m_Devices)
+        public KillSwitchCommand(RemoteControlDevice[] devices) : base(receiver)
         {
-            device.TurnOff();
+            m_Devices = devices;
+        }
+
+        public override void Execute()
+        {
+            foreach (RemoteControlDevice device in m_Devices)
+            {
+                device.TurnOff();
+            }
         }
     }
 }

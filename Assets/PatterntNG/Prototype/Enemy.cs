@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 
-public class Enemy : MonoBehaviour, iCopyable
+namespace PatterntNG.Prototype
 {
-    public iCopyable Copy()
+    public class Enemy : MonoBehaviour, iCopyable
     {
-        return Instantiate(this);
+        public iCopyable Copy()
+        {
+            return Instantiate(this);
+        }
     }
 }
