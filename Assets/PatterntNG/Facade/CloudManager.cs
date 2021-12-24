@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
-
-public class CloudManager
+namespace Pattern.Facade
 {
-    public void UploadSaveGame(string playerData)
+    public class CloudManager
     {
-        Debug.Log("Uploading save data.");
+        public void UploadSaveGame(string playerData)
+        {
+            Debug.Log("Uploading save data.");
+        }
     }
 }

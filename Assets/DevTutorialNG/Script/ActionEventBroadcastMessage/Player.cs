@@ -24,4 +24,8 @@ public class Player : MonoBehaviour
 			OnPlayerTookDamage(HP);
 	}
 
+    public static implicit operator Player(TPS.Script.Players.Player v)
+    {
+        throw new NotImplementedException();
+    }
 }

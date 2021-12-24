@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
-
-public class ScoreManager
+namespace Pattern.Facade
 {
-    public int GetScore(int playerId)
+    public class ScoreManager
     {
-        Debug.Log("Returning player score.");
-        return 0;
+        public int GetScore(int playerId)
+        {
+            Debug.Log("Returning player score.");
+            return 0;
+        }
     }
 }
