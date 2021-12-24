@@ -2,22 +2,35 @@
 
 public class Shooter : MonoBehaviour
 {
+    void Awake()
+    {
+        muzzle = transform.Find("Muzzle");
+        _reloader = GetComponent<WeaponReloader>();
+    }
+
+
     // 1 is in seconds
     [SerializeField] float rateOffFire;
 
     [SerializeField] Projectile projectile;
 
-
-    private float nextFireAllowed;
-
     [HideInInspector]
     public Transform muzzle;
 
+    private WeaponReloader _reloader;
+
+    public void Reload(){
+
+        if (_reloader == null) {
+            return;
+        }
+        _reloader.Reload();
+    
+    }
+
+    private float nextFireAllowed;
     public bool canFire;
 
-    void Awake() {
-        muzzle = transform.Find("Muzzle");
-    }
 
     public virtual void Fire() {
 
@@ -25,6 +38,19 @@ public class Shooter : MonoBehaviour
 
         if (Time.time < nextFireAllowed) 
             return;
+
+        if (_reloader != null) {
+
+            // cant fire while reloading
+            if (_reloader.IsReloading)
+                return;
+
+            // cant fire while no clip remasins
+            if (_reloader.RoundsRemaningInCLip == 0)
+                return;
+
+            _reloader.TakeFromClip(1);
+        }
 
         nextFireAllowed = Time.time + rateOffFire;
 

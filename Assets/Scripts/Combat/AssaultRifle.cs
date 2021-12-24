@@ -1,5 +1,7 @@
 ﻿public class AssaultRifle : Shooter
 {
+
+
     public override void Fire()
     {
         base.Fire();
@@ -9,5 +11,14 @@
         
         }
 
+    }
+
+    void Update() {
+
+        if (GameManager.Instance.InputController.Reload) { 
+            Reload();
+        }
+
+    
     }
 }

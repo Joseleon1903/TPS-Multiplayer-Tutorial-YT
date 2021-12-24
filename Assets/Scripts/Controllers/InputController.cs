@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
@@ -9,6 +7,7 @@ public class InputController : MonoBehaviour
     public Vector2 MouseInput;
 
     public bool Fire1;
+    public bool Reload;
 
     void Update() {
 
@@ -16,6 +15,7 @@ public class InputController : MonoBehaviour
         Horizontal = Input.GetAxis("Horizontal");
         MouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
         Fire1 = Input.GetButton("Fire1");
+        Reload = Input.GetKey(KeyCode.R);
     }
 
     
