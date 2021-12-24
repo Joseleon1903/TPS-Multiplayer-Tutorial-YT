@@ -1,30 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TPS.Share;
 using UnityEngine;
 
-public class Health : Destructable
+namespace TPS.Script.Combat
 {
-
-    [SerializeField] float inSeconds;
-
-    public override void Die()
+    public class Health : Destructable
     {
-        base.Die();
 
-        GameManager.Instance.Respawner.Despawn(gameObject, inSeconds);
+        [SerializeField] float inSeconds;
 
-        print("We Die");
-    }
+        public override void Die()
+        {
+            base.Die();
 
-    void OnEnable() { 
-    
-        Reset();
-    }
+            GameManager.Instance.Respawner.Despawn(gameObject, inSeconds);
 
-    public override void TakeDamanage(float amount)
-    {
-        print("Remain : "+ HitPointsRemaining);
+            print("We Die");
+        }
 
-        base.TakeDamanage(amount);
+        void OnEnable()
+        {
+
+            Reset();
+        }
+
+        public override void TakeDamanage(float amount)
+        {
+            print("Remain : " + HitPointsRemaining);
+
+            base.TakeDamanage(amount);
+        }
     }
 }

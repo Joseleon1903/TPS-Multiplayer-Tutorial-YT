@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
 
-public class Respawner : MonoBehaviour
+namespace TPS.Share
 {
-    public void Despawn(GameObject go, float inSeconds) { 
-    
-        go.SetActive(false);
-        GameManager.Instance.Timer.Add(() =>
+    public class Respawner : MonoBehaviour
+    {
+        public void Despawn(GameObject go, float inSeconds)
         {
-            go.SetActive(true);
-        }, inSeconds);
+
+            go.SetActive(false);
+            GameManager.Instance.Timer.Add(() =>
+            {
+                go.SetActive(true);
+            }, inSeconds);
+        }
+
     }
-    
 }

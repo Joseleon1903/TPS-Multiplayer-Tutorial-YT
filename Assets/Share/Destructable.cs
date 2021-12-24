@@ -1,49 +1,58 @@
 ﻿using UnityEngine;
 
-public class Destructable : MonoBehaviour
+namespace TPS.Share
 {
-    [SerializeField] float hitPoints;
+    public class Destructable : MonoBehaviour
+    {
+        [SerializeField] float hitPoints;
 
-    public event System.Action OnDeath;
+        public event System.Action OnDeath;
 
-    public event System.Action OnDamageRecive;
+        public event System.Action OnDamageRecive;
 
-    float damageTaken;
+        float damageTaken;
 
-    public float HitPointsRemaining { 
-    
-        get { return hitPoints - damageTaken; }
-    }
+        public float HitPointsRemaining
+        {
 
-    public bool IsAlive { 
-    
-        get { return HitPointsRemaining > 0; }
-    }
+            get { return hitPoints - damageTaken; }
+        }
 
-    public virtual void Die() {
+        public bool IsAlive
+        {
 
-        if (!IsAlive) 
-            return;
-        
-        if(OnDeath != null)
-            OnDeath();
-    
-    }
+            get { return HitPointsRemaining > 0; }
+        }
 
-    public virtual void TakeDamanage(float amount) { 
-        damageTaken += amount;
+        public virtual void Die()
+        {
 
-        if(OnDamageRecive !=null)
-            OnDamageRecive();
+            if (!IsAlive)
+                return;
 
-        if (HitPointsRemaining <=0 ) { 
-            Die();
+            if (OnDeath != null)
+                OnDeath();
+
+        }
+
+        public virtual void TakeDamanage(float amount)
+        {
+            damageTaken += amount;
+
+            if (OnDamageRecive != null)
+                OnDamageRecive();
+
+            if (HitPointsRemaining <= 0)
+            {
+                Die();
+            }
+
+        }
+
+        public void Reset()
+        {
+            damageTaken = 0;
         }
 
     }
-
-    public void Reset() { 
-        damageTaken = 0;
-    }
-
 }

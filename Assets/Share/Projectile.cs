@@ -1,35 +1,38 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-public class Projectile : MonoBehaviour
+namespace TPS.Share
 {
-    [SerializeField] private float speed;
-    [SerializeField] private float timeToLive;
-    [SerializeField] private float damanage;
-
-    void Start() {
-
-        Destroy(gameObject, timeToLive);
-    }
-
-    void Update()
+    [RequireComponent(typeof(Rigidbody))]
+    public class Projectile : MonoBehaviour
     {
-        transform.Translate(Vector3.right * speed * Time.deltaTime);
+        [SerializeField] private float speed;
+        [SerializeField] private float timeToLive;
+        [SerializeField] private float damanage;
 
-    }
+        void Start()
+        {
 
-    void OnTriggerEnter(Collider other) {
+            Destroy(gameObject, timeToLive);
+        }
 
-        print("hit : " + other.name);
-    
-        var destructable = other.transform.GetComponent<Destructable>();
+        void Update()
+        {
+            transform.Translate(Vector3.right * speed * Time.deltaTime);
 
-        if (destructable == null)
-            return;
+        }
 
-        destructable.TakeDamanage(damanage);
-    
+        void OnTriggerEnter(Collider other)
+        {
+
+            print("hit : " + other.name);
+
+            var destructable = other.transform.GetComponent<Destructable>();
+
+            if (destructable == null)
+                return;
+
+            destructable.TakeDamanage(damanage);
+
+        }
     }
 }

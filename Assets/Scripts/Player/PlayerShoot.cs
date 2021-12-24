@@ -1,13 +1,19 @@
-﻿using UnityEngine;
+﻿using TPS.Share;
+using UnityEngine;
 
-public class PlayerShoot : MonoBehaviour
+namespace TPS.Script.Players
 {
-    [SerializeField] Shooter assaultRifle;
+    public class PlayerShoot : MonoBehaviour
+    {
+        [SerializeField] Shooter assaultRifle;
 
-    void Update() {
+        void Update()
+        {
 
-        if (GameManager.Instance.InputController.Fire1) {
-            assaultRifle.Fire();
+            if (GameManager.Instance.InputController.Fire1)
+            {
+                assaultRifle.Fire();
+            }
         }
     }
 }

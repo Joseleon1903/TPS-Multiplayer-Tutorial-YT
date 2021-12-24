@@ -1,24 +1,31 @@
-﻿public class AssaultRifle : Shooter
+﻿using TPS.Share;
+namespace TPS.Script.Combat
 {
-
-
-    public override void Fire()
+    public class AssaultRifle : Shooter
     {
-        base.Fire();
 
-        if (canFire) { 
-            //we fire the gun
-        
+
+        public override void Fire()
+        {
+            base.Fire();
+
+            if (canFire)
+            {
+                //we fire the gun
+
+            }
+
         }
 
-    }
+        void Update()
+        {
 
-    void Update() {
+            if (GameManager.Instance.InputController.Reload)
+            {
+                Reload();
+            }
 
-        if (GameManager.Instance.InputController.Reload) { 
-            Reload();
+
         }
-
-    
     }
 }
