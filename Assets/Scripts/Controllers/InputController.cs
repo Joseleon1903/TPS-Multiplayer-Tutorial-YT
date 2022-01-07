@@ -10,6 +10,9 @@ namespace TPS.Script.Controllers
 
         public bool Fire1;
         public bool Reload;
+        public bool Iswalking;
+        public bool IsCrouched;
+
 
         void Update()
         {
@@ -19,6 +22,8 @@ namespace TPS.Script.Controllers
             MouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
             Fire1 = Input.GetButton("Fire1");
             Reload = Input.GetKey(KeyCode.R);
+            Iswalking = Input.GetKey(KeyCode.LeftShift);
+            IsCrouched = Input.GetKey(KeyCode.C);
         }
 
 

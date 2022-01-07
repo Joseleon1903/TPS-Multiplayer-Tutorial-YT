@@ -15,10 +15,12 @@ namespace TPS.Script.Players
         {
             public Vector2 Damping;
             public Vector2 Sensitivity;
+            public bool lockMouse;
         }
 
-        [SerializeField]
-        private float speed;
+        [SerializeField] private float runspeed;
+        [SerializeField] private float walkSpeed;
+        [SerializeField] private float crouchSpeed;
 
         [SerializeField]
         private MouseInput MouseControl;
@@ -59,19 +61,32 @@ namespace TPS.Script.Players
         {
             playeInput = GameManager.Instance.InputController;
             GameManager.Instance.LocalPlayer = this;
+
+            if (MouseControl.lockMouse) {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+
         }
 
-        // Start is called before the first frame update
-        void Start()
-        {
+        void Move() {
 
-        }
+            float moveSpeed = runspeed;
 
-        // Update is called once per frame
-        void Update()
-        {
-            Vector2 direction = new Vector2(playeInput.Vertical * speed, playeInput.Horizontal * speed);
+            if (playeInput.Iswalking) {
+                moveSpeed = walkSpeed;
+            }
+
+            if (playeInput.IsCrouched)
+            {
+                moveSpeed = crouchSpeed;
+            }
+
+            Vector2 direction = new Vector2(playeInput.Vertical * runspeed, playeInput.Horizontal * moveSpeed);
             MoveController.move(direction);
+        }
+
+        void LookAround() {
 
             mouseInput.x = Mathf.Lerp(mouseInput.x, playeInput.MouseInput.x, 1f / MouseControl.Damping.x);
             mouseInput.y = Mathf.Lerp(mouseInput.y, playeInput.MouseInput.y, 1f / MouseControl.Damping.y);
@@ -80,5 +95,14 @@ namespace TPS.Script.Players
 
             CrossHair.LookHeight(mouseInput.y * MouseControl.Sensitivity.y);
         }
+
+  
+
+        // Update is called once per frame
+        void Update()
+        {
+            Move();
+
+            LookAround();        }
     }
 }

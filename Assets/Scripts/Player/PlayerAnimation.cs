@@ -18,7 +18,8 @@ namespace TPS.Script.Players
 
             animator.SetFloat("Vertical", GameManager.Instance.InputController.Vertical);
             animator.SetFloat("Horizontal", GameManager.Instance.InputController.Horizontal);
-
+            animator.SetBool("IsWalking", GameManager.Instance.InputController.Iswalking);
+            animator.SetBool("IsCrouched", GameManager.Instance.InputController.IsCrouched);
         }
 
     }
