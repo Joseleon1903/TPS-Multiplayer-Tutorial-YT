@@ -9,6 +9,7 @@ namespace TPS.Share
         {
             muzzle = transform.Find("Muzzle");
             _reloader = GetComponent<WeaponReloader>();
+            transform.SetParent(hand);
         }
 
 
@@ -17,8 +18,9 @@ namespace TPS.Share
 
         [SerializeField] Projectile projectile;
 
-        [HideInInspector]
-        public Transform muzzle;
+        [SerializeField] Transform hand;
+
+        [HideInInspector] public Transform muzzle;
 
         private WeaponReloader _reloader;
 
