@@ -10,9 +10,11 @@ namespace TPS.Script.Combat
         [SerializeField] float reloadTime;
         [SerializeField] int clipSize;
 
-        int ammo;
+        [SerializeField] Container inventory;
+
         public int shotsFiredInClip;
         bool isReloading;
+        System.Guid conteinerId;
 
         public int RoundsRemaningInCLip
         {
@@ -25,6 +27,10 @@ namespace TPS.Script.Combat
             get { return isReloading; }
         }
 
+        void Awake() {
+            conteinerId = inventory.Add(this.name, maxAmmo);
+        }
+
         public void Reload()
         {
             if (isReloading)
@@ -32,22 +38,18 @@ namespace TPS.Script.Combat
                 return;
             }
             print("Reload Executed");
+
             isReloading = true;
-            GameManager.Instance.Timer.Add(ExecuteReload, reloadTime);
+            GameManager.Instance.Timer.Add(() => {
+                ExecuteReload(inventory.TakeFromConteiners(conteinerId, clipSize - RoundsRemaningInCLip));
+                }, reloadTime);
         }
 
-        private void ExecuteReload()
+        private void ExecuteReload(int amount)
         {
             print("Reload Complete");
             isReloading = false;
-            ammo -= shotsFiredInClip;
-            shotsFiredInClip = 0;
-
-            if (ammo < 0)
-            {
-                ammo = 0;
-                shotsFiredInClip += 0;
-            }
+            shotsFiredInClip -= amount;
         }
 
         public void TakeFromClip(int clip)
